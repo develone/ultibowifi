@@ -1,0 +1,57 @@
+commit 6b5d6f8ad2fa70c93d390e939b4170110be863f9 (HEAD -> dwt, origin/dwt)
+Author: Edward Vidal Jr <develone@sbcglobal.net>
+Date:   Thu Nov 26 07:48:33 2026 -0700
+
+devel@pi4-50:~/ultibowifi $ tftp 192.168.12.128
+tftp> binary
+tftp> put kernel.img
+tftp>
+
+pi-zero rebooted
+
+devel@pi4-50:~/ultibowifi $ telnet 192.168.12.128
+Trying 192.168.12.128...
+Connected to 192.168.12.128.
+Escape character is '^]'.
+
+Ultibo Core (Release: Beetroot Version: 2.6.185 Date: 14 November 2026)
+ (Type HELP for a list of available commands)
+>
+
+ 2026-11-21 20:29:46    <DIR>          UltiboWIFIDemo_v1.5.0
+ 2026-11-21 20:07:46              256  armstub32-rpi2.bin
+ 2026-11-21 20:07:46              256  armstub32-rpi3.bin
+ 2026-11-21 20:07:46              256  armstub32-rpi4.bin
+ 2026-11-21 20:07:46            52456  bootcode.bin
+ 2026-11-21 20:07:46               32  cmdline.txt
+ 2026-11-21 20:07:46             1122  config.txt
+ 2026-11-21 20:07:52    <DIR>          firmware
+ 2026-11-21 20:07:52             5442  fixup4.dat
+ 2026-11-21 20:07:52             7313  fixup.dat
+ 2026-11-21 20:07:54          3878248  kernel7.img
+ 2026-11-21 20:07:54          3911288  kernel7l.img
+ 2026-11-26 14:54:12          3853576  kernel.img
+ 2026-11-24 16:50:48          3890936  tt.img
+ 2026-11-21 20:07:56             1594  LICENCE.broadcom
+ 2026-11-21 20:07:56             1349  README.txt
+ 2026-11-21 20:07:58          2231712  start4.elf
+ 2026-11-21 20:07:58          2955936  start.elf
+ 2026-11-21 20:46:08              121  wpa_supplicant.conf
+ 2026-11-21 20:34:36    <DIR>          wpasupplicant
+ 2026-11-21 20:32:46    <DIR>          lib
+ 2026-11-22 19:11:10               57  testing_uTFTP.txt
+ 2026-11-22 20:52:46               24  256decom
+ 2026-11-22 20:52:36               24  64decom
+ 2026-11-22 20:53:00               24  2048decom
+ 2026-11-22 20:53:12               24  256com
+ 2026-11-22 20:53:24               24  64com
+ 2026-11-22 20:53:42               24  2048com
+ 2026-11-22 20:53:48               24  testfile
+ 2026-11-22 20:57:22         12583034  MyBitmap.bmp
+ 2026-11-22 20:57:52            12426  lena_rgb_64.bmp
+ 2026-11-22 20:58:16           196730  lena_rgb_256.bmp
+ 2026-11-22 21:01:32         12583034  lena_rgb_2048.bmp
+          29 file(s) 46167342 bytes
+          4 dir(s)
+
+C:\>
