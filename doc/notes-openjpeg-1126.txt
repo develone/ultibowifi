@@ -100,3 +100,22 @@ Did not reboot
 
 devel@pi4-50:~/ultibowifi $ cp kernel.img /media/devel/DC6C-2410/
 This did reboot.
+
+devel@pi4-50:~/ultibowifi $ od -x ~/firmwar_for_ultibo/jpeg2000/256com 
+0000000 0019 0000 0001 0000 0000 0000 0000 0000
+0000020 0100 0000 0100 0000
+0000030
+0000 00119 is a CR of 25 
+0000 0001 encode 
+256com --> needs to be in testfile
+MyBitmap.bmp is the input 
+this creates test.j2k  which will be used  256decom is in testfile
+
+devel@pi4-50:~/ultibowifi $ od -x ~/firmwar_for_ultibo/jpeg2000/256decom 
+0000000 0019 0000 0000 0000 0000 0000 0000 0000
+0000020 0100 0000 0100 0000
+0000030
+0000 0000 decode
+This step decodes to test_wr.bmp
+  
+256decom --> needs to be in testfile
