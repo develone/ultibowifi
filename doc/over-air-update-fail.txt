@@ -1,0 +1,25 @@
+devel@pi4-50:~/ultibowifi $ git diff openjpeg.lpr
+diff --git a/openjpeg.lpr b/openjpeg.lpr
+index c8eaaa6..dfe25ff 100644
+--- a/openjpeg.lpr
++++ b/openjpeg.lpr
+@@ -48,6 +48,9 @@ uses
+   transport,
+   Iphlpapi;
+ 
++{$linklib dwtlift}
++{$linklib libm}
++procedure decom_test(x0,y0,x1,y1:LongWord;fn:string); cdecl; external 'libdwtlift' name 'decom_test';
+ var
+   SSID : string;
+   key : string;
+   
+devel@pi4-50:~/ultibowifi $ tftp 192.168.12.128
+tftp> binary
+tftp> put kernel.img
+tftp> 
+
+Did not reboot
+
+devel@pi4-50:~/ultibowifi $ cp kernel.img /media/devel/DC6C-2410/
+This did reboot.
