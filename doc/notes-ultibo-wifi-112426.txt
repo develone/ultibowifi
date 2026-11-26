@@ -1,0 +1,33 @@
+11/24/26
+Goal to remove the windows to add the window for jpeg2000.
+
+Forked from https://github.com/ric355/ultibowifi
+Created a new branch https://github.com/develone/ultibowifi/tree/mylogging
+
+devel@pi5-70:~/master-repos $ git clone -b mylogging git@github.com:develone/ultibowifi.git
+cd ultibowifi/src/
+./compile_ultibo.sh 
+cd ../
+./libbuild.sh
+libdwtlift.a is created
+ 
+devel@pi4-50:~ $ git clone -b mylogging https://github.com/develone/ultibowifi.git
+devel@pi4-50:~/ultibowifi $ git branch -a
+* mylogging
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/mylogging
+  remotes/origin/test-dev
+I wanted to use logging. In my .bashrc I added
+export FILESYS_LOGGING_FILE="logging.log"
+    if (SysUtils.GetEnvironmentVariable('FILESYS_LOGGING_FILE') <> '') then
+    begin
+      FILESYS_REGISTER_LOGGING := True;
+      FILESYS_LOGGING_DEFAULT := True;
+      LoggingDeviceSetDefault(LoggingDeviceFindByType(LOGGING_TYPE_FILE));
+
+      // intercept stdio for logging purposes.
+      // supplicant writes to stdio for info and debug etc.
+      LoggingDeviceRedirectOutput(LoggingDeviceFindByType(LOGGING_TYPE_FILE));
+    end  
+Created a new kernel.img but no logging occurred.
