@@ -1,0 +1,49 @@
+11/21/26
+UltiboWIFIDemo_v1.5.0.zip from https://github.com/ric355/ultibowifi/releases/tag/v1.5.0
+#:\>type wpa_supplicant.conf
+# wpa_supplicant.conf
+#
+
+country=US
+
+network={
+	ssid="*********"
+	psk="**********"
+	proto=WPA2
+	key_mgmt=WPA-PSK
+}
+
+devel@pi5-90:~ $ telnet 192.168.12.119
+Trying 192.168.12.119...
+Connected to 192.168.12.119.
+Escape character is '^]'.
+
+Ultibo Core (Release: Beetroot Version: 2.6.111 Date: 8 October 2025)
+ (Type HELP for a list of available commands)
+Huh?
+  Directory of C:\
+
+ 2026-11-21 20:29:46    <DIR>          UltiboWIFIDemo_v1.5.0
+ 2026-11-21 20:07:46              256  armstub32-rpi2.bin
+ 2026-11-21 20:07:46              256  armstub32-rpi3.bin
+ 2026-11-21 20:07:46              256  armstub32-rpi4.bin
+ 2026-11-21 20:07:46            52456  bootcode.bin
+ 2026-11-21 20:07:46               32  cmdline.txt
+ 2026-11-21 20:07:46             1122  config.txt
+ 2026-11-21 20:07:52    <DIR>          firmware
+ 2026-11-21 20:07:52             5442  fixup4.dat
+ 2026-11-21 20:07:52             7313  fixup.dat
+ 2026-11-21 20:07:54          3878248  kernel7.img
+ 2026-11-21 20:07:54          3911288  kernel7l.img
+ 2026-11-21 20:07:56          3816696  kernel.img
+ 2026-11-21 20:07:56             1594  LICENCE.broadcom
+ 2026-11-21 20:07:56             1349  README.txt
+ 2026-11-21 20:07:58          2231712  start4.elf
+ 2026-11-21 20:07:58          2955936  start.elf
+ 2026-11-21 20:46:08              121  wpa_supplicant.conf
+ 2026-11-21 20:34:36    <DIR>          wpasupplicant
+ 2026-11-21 20:32:46    <DIR>          lib
+          16 file(s) 16864077 bytes
+          4 dir(s)
+
+C:\>

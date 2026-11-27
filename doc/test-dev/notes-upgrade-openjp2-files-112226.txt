@@ -1,0 +1,25 @@
+These are the steps to create libopenjp2.a libopenjp2.a.dis libopenjp2_obj.txt
+
+This was done in 2 steps
+devel@pi4-50:~/Ultibo_Projects/jpeg2000/src $ ./compile_ultibo.sh
+devel@pi4-50:~/Ultibo_Projects/jpeg2000/RPi2 $ ./libbuild.sh
+which created libdwtlift.a 
+devel@pi4-50:~/Ultibo_Projects/jpeg2000/QEMU $ ./libbuild.sh
+which created libdwtlift.a
+devel@pi4-50:~/Ultibo_Projects/jpeg2000/RPi $ ./libbuild.sh
+which created libdwtlift.a
+devel@pi4-50:~/Ultibo_Projects/jpeg2000/RPi4 $ ./libbuild.sh
+which created libdwtlift.a
+
+{$linklib dwtlift}
+{$linklib libm}
+procedure decom_test(x0,y0,x1,y1:LongWord;fn:string); cdecl; external 'libdwtlift' name 'decom_test';
+
+devel@pi5-70:~/master-repos/ultibowifi $ git commit 
+[test-dev 231cc55] Files from dwtlift-pi upgraded openjpeg 
+devel@pi5-70:~/master-repos/ultibowifi/jpeg2000/src $ git add image.c mqc_inl.h 
+opj_codec.h opj_includes.h opj_intmath.h thread.c Makefile dwtlift.c dwtlift.h 
+format_defs.h raw.c raw.h rd-wr-ops.c rdwr.h
+
+devel@pi4-50:~/ultibowifi/jpeg2000/src $ make clean ; make all
+devel@pi4-50:~/ultibowifi/jpeg2000/src $ make openjp2
