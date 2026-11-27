@@ -48,6 +48,9 @@ uses
   transport,
   Iphlpapi;
 
+{$linklib dwtlift}
+{$linklib libm}
+procedure decom_test(x0,y0,x1,y1:LongWord;fn:string); cdecl; external 'libdwtlift' name 'decom_test';
 var
   SSID : string;
   key : string;
@@ -60,6 +63,25 @@ var
   Status : Longword;
   CYW43455Network: PCYW43455Network;
   BSSIDStr : string;
+
+
+  GlobalCounter: Integer;
+  {These variables need to be in a new unit}
+  CR, enc, xx0, yy0, xx1, yy1:LongWord;
+  DECOMP: Integer;
+  ENCODE: Integer;
+  TCP_DISTORATIO: Integer;
+  FILTER: Integer;
+  COMPRESSION_RATIO : Integer;
+  DIS_CR_FLG : Integer;
+  X:LongWord;
+  Y:LongWord;
+  Width:LongWord;
+  Height:LongWord;
+  da_x0,da_y0,da_x1,da_y1:LongWord;
+  ff:string;
+  Filename:string;
+  FileStream:TFileStream;
 
 procedure WIFIScanCallback(ssid : string; ScanResultP : pwl_escan_result);
 var
@@ -75,6 +97,63 @@ begin
   if (ScanResultList <> nil) and (ScanResultList.Indexof(ssidstr) < 0) then
     ScanResultList.Add(ssidstr);
 end;
+
+procedure RdParameters();
+begin
+     DECOMP:=6;
+     ENCODE:=1;
+     //FILTER 0 5/3 DWT
+     //FILTER 1 9/7 DWT
+     FILTER:= 0;
+     COMPRESSION_RATIO := 125;
+     da_x0:=0;
+     da_y0:=0;
+     da_x1:=2048;
+     da_y1:=2048;
+     {starting the procedure to read the file testfile which contains a struct
+      which has the varables for decompression.}
+      ff:='test.j2k';
+
+
+
+try
+  Filename:='C:\testfile';
+  try
+   FileStream:=TFileStream.Create(Filename,fmOpenRead);
+   FileStream.Read(CR,sizeof(CR));
+   COMPRESSION_RATIO:=CR;
+   ConsoleWindowWriteLn(TopWindow, 'xx0 ' + intToStr(xx0));
+   FileStream.Read(enc,sizeof(enc));
+   ENCODE:=enc;
+   ConsoleWindowWriteLn(TopWindow, 'xx0 ' + intToStr(xx0));
+   FileStream.Read(xx0,sizeof(xx0));
+   da_x0:=xx0;
+   ConsoleWindowWriteLn(TopWindow, 'xx0 ' + intToStr(xx0));
+   FileStream.Read(yy0,sizeof(yy0));
+   da_y0:=yy0;
+   ConsoleWindowWriteLn(TopWindow, 'yy0 ' + intToStr(yy0));
+   FileStream.Read(xx1,sizeof(xx1));
+   da_x1:=xx1;
+   ConsoleWindowWriteLn(TopWindow, 'xx1 ' + intToStr(xx1));
+   FileStream.Read(yy1,sizeof(yy1));
+   da_y1:=yy1;
+   ConsoleWindowWriteLn(TopWindow, 'yy1 ' + intToStr(yy1));
+   ConsoleWindowWriteLn(TopWindow, 'xx0 ' + intToStr(xx0) + ' yy0 ' + intToStr(yy0) + ' xx1 ' + intToStr(xx1) + ' yy1 ' + intToStr(yy1));
+
+   {FileStream.Read(decompstr,1);
+   //ConsoleWindowWriteLn(Handle, 'decomp file ' + decompstr); }
+
+   FileStream.Free;
+
+  finally
+  end;
+  except
+   on E: Exception do
+   begin
+     //ConsoleWindowWriteLn(Handle, 'Error: ' + E.Message);
+    end;
+ end;
+ end;
 
 function GetMACAddress(const AdapterName: String): String;
 // Get the MAC address of an adapter using the IP Helper API
@@ -209,6 +288,7 @@ begin
   end;
 
   ConsoleWindowWriteln(TopWindow, 'IP Address=' + IPAddress);
+  RdParameters();
 end;
 
 procedure CPUUtilisation(window : TWindowHandle; core : integer);
