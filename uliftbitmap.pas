@@ -45,7 +45,7 @@ uLiftBitmap
 {$mode delphi} {Default to Delphi compatible syntax}
 {$H+}          {Default to AnsiString}
 {$inline on}   {Allow use of Inline procedures}
-{$linklib openjp2}
+{$linklib dwtlift}
 {$linklib libm}
 unit uLiftBitmap; 
 
