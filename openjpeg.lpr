@@ -125,6 +125,7 @@ try
    ConsoleWindowWriteLn(TopWindow, 'xx0 ' + intToStr(xx0));
    FileStream.Read(enc,sizeof(enc));
    ENCODE:=enc;
+   ConsoleWindowWriteLn(TopWindow, 'enc ' + intToStr(enc));
    ConsoleWindowWriteLn(TopWindow, 'xx0 ' + intToStr(xx0));
    FileStream.Read(xx0,sizeof(xx0));
    da_x0:=xx0;
@@ -142,6 +143,15 @@ try
 
    {FileStream.Read(decompstr,1);
    //ConsoleWindowWriteLn(Handle, 'decomp file ' + decompstr); }
+    //should not be set lower than  30 which is compressiong over 1500
+ //
+ //		38	189.4093899116
+ //		44	44.058396563
+ //		50	15.9377967826
+ //		54	8.6079098426
+ //		58	6.0368784486
+ //		60	5.5454244973
+ TCP_DISTORATIO:=60;
 
    FileStream.Free;
 
@@ -312,8 +322,9 @@ begin
   if StrToBoolDef(SysUtils.GetEnvironmentVariable('SERIAL_LOGGING'), False) then
   begin
     TopWindow := ConsoleWindowCreate(ConsoleDeviceGetDefault, CONSOLE_POSITION_TOP, TRUE);
-    CPUWindow := ConsoleWindowCreate(ConsoleDeviceGetDefault, CONSOLE_POSITION_BOTTOM, FALSE);
-
+    //CPUWindow := ConsoleWindowCreate(ConsoleDeviceGetDefault, CONSOLE_POSITION_BOTTOM, FALSE);
+    {Create a graphics window to display our bitmap, let's use the new CONSOLE_POSITION_FULLSCREEN option}
+    CPUWindow:=GraphicsWindowCreate(ConsoleDeviceGetDefault,CONSOLE_POSITION_BOTTOM);
     SERIAL_REGISTER_LOGGING := True;
     SERIAL_LOGGING_DEFAULT := True;
     SerialLoggingDeviceAdd(SerialDeviceGetDefault);
